@@ -1,4 +1,4 @@
-package com.muhammed.Controllers;
+package com.schoolmanagement.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
