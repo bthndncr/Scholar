@@ -80,6 +80,10 @@ CREATE TABLE teachers_classes (
     CONSTRAINT pk_teacher_id_class_id PRIMARY KEY (teacher_id, class_id)
 );
 
+CREATE TABLE gradebook (
+    letter_grade varchar NOT NULL
+)
+
 ALTER TABLE students
 ADD CONSTRAINT FK_students_classes
 FOREIGN KEY (class_id) REFERENCES classes(class_id);
