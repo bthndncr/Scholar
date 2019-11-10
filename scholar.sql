@@ -17,6 +17,9 @@ DROP TABLE IF EXISTS class           cascade;
 DROP TABLE IF EXISTS teachers_classes cascade;
 DROP TABLE IF EXISTS grades          cascade;
 DROP TABLE IF EXISTS assignments     cascade;
+DROP TABLE IF EXISTS logs            cascade;
+DROP TABLE IF EXISTS disciplines     cascade;
+DROP TABLE IF EXISTS teachers_logs   cascade;
 
 CREATE TABLE teachers (
     teacher_id serial NOT NULL,
@@ -78,7 +81,7 @@ CREATE TABLE teachers_classes (
 
 CREATE TABLE grades (
     grade_id serial NOT NULL,
-    assignment_id id NOT NULL,
+    assignment_id int NOT NULL,
     student_id int NOT NULL,
     letter_grade varchar(2) NOT NULL,
     points_earned decimal(5, 2),
@@ -115,7 +118,7 @@ CREATE TABLE teachers_logs (
     teacher_id int NOT NULL,
     log_id int NOT NULL,
     CONSTRAINT PK_teachers_teacher_id_logs_log_id PRIMARY KEY (teacher_id, log_id)
-)
+);
 
 ALTER TABLE students
 ADD CONSTRAINT FK_students_classes
