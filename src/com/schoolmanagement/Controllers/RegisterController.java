@@ -17,9 +17,9 @@ public class RegisterController {
 		
 		@RequestMapping(path="/register", method=RequestMethod.GET)
 		public String showLoginPage(ModelMap modelHolder) {
-			if (!modelHolder.containsAttribute("Registration")) {
-				modelHolder.addAttribute("Registration", new Registration());
-			}
+//			if (!modelHolder.containsAttribute("Registration")) {
+//				modelHolder.addAttribute("Registration", new Registration());
+//			}
 			return "register";
 		}
 		

@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.schoolmanagement.Models.Student;
+
 @Component
 public class JDBCGradeDao implements GradeDao {
 	
@@ -76,6 +78,12 @@ public class JDBCGradeDao implements GradeDao {
 		String sqlInsertNewGrade = "INSERT INTO grade (assignment_id, student_id, points_possible, points_earned) "
 								 + "VALUES (? , ? , ? , ?) ;";
 		jdbcTemplate.queryForRowSet(sqlInsertNewGrade, assignmentId, studentId, pointsPossible, pointsEarned);
+	}
+	
+	public List<Student> getStudents() {
+		List<Student> studentListForGrades = new ArrayList<Student>();
+		
+		return studentListForGrades;
 	}
 
 	private Grade mapRowToGrade(SqlRowSet results) {
