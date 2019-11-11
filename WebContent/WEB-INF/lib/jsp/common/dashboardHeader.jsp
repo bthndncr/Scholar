@@ -67,7 +67,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Curriculum</a>
-          <a class="dropdown-item" href="#">Grades</a>
+          <a class="dropdown-item" href="dashboard/displayGrades">Grades</a>
           <a class="dropdown-item" href="#">Reports</a>
         </div>
       </li>
