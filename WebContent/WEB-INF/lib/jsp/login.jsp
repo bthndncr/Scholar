@@ -9,13 +9,15 @@
 <div class="header">
 	<h1>Welcome Back to Scholar</h1>
 </div>
-<section>
 
+<section class="text-center">
+
+	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 	<c:url var="formAction" value="/login" />
 	<form action="${formAction}" method="POST">
 	
 	<div class="form-group">
-		<select>
+		<select id="role">
 			<option value="admin">Admin</option>
 			<option value="teacher">Teacher</option>
 			<option value="student">Student</option>
@@ -23,20 +25,17 @@
 	</div>
 	
 	
-	  <div class="form-group">
-	    <label for="exampleInputEmail1">Email address</label>
-	    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-	    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-	  </div>
-	  <div class="form-group">
-	    <label for="exampleInputPassword1">Password</label>
-	    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-	  </div>
-	  <div class="form-group form-check">
-	    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-	    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-	  </div>
-	  <button type="submit" class="btn btn-primary">Submit</button>
+	  <label for="inputEmail" class="sr-only">Email address</label>
+	  <input type="email" id="inputEmail" class="form-control mb-1" placeholder="Email address" required autofocus>
+	  
+	  <label for="inputPassword" class="sr-only">Password</label>
+	  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+	  <div class="checkbox mb-3">
+    	<label>
+      	<input type="checkbox" value="remember-me"> Remember me
+    	</label>
+  	  </div>
+  	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	  
 	</form>
 
