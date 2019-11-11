@@ -23,3 +23,11 @@ footer {
     border: 1px solid #ced4da;
     border-radius: .25rem
 }
+
+.widget-container {
+	margin-top: 5rem;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	
+}
