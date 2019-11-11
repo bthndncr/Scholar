@@ -17,6 +17,10 @@ DROP TABLE IF EXISTS class           cascade;
 DROP TABLE IF EXISTS teachers_classes cascade;
 DROP TABLE IF EXISTS grades          cascade;
 DROP TABLE IF EXISTS assignments     cascade;
+DROP TABLE IF EXISTS grades_assignments cascade;
+DROP TABLE IF EXISTS logs            cascade;
+DROP TABLE IF EXISTS disciplines     cascade;
+DROP TABLE IF EXISTS teachers_logs   cascade;
 
 CREATE TABLE teachers (
     teacher_id serial NOT NULL,
@@ -78,7 +82,7 @@ CREATE TABLE teachers_classes (
 
 CREATE TABLE grades (
     grade_id serial NOT NULL,
-    assignment_id id NOT NULL,
+    assignment_id int NOT NULL,
     student_id int NOT NULL,
     points_possible int,
     points_earned decimal(5, 2),
@@ -93,6 +97,12 @@ CREATE TABLE assignments (
     date_due date,
     subject varchar,
     CONSTRAINT PK_assignments_assignment_id PRIMARY KEY (assignment_id)
+);
+
+CREATE TABLE grades_assignments (
+    grade_id int NOT NULL,
+    assignment_id int NOT NULL,
+    CONSTRAINT PK_grades_assignments_grade_id_assignment_id PRIMARY KEY (grade_id, assignment_id)
 );
 
 CREATE TABLE disciplines (
@@ -115,7 +125,15 @@ CREATE TABLE teachers_logs (
     teacher_id int NOT NULL,
     log_id int NOT NULL,
     CONSTRAINT PK_teachers_teacher_id_logs_log_id PRIMARY KEY (teacher_id, log_id)
-)
+);
+
+ALTER TABLE grades_assignments
+ADD CONSTRAINT FK_grades_grades_assignments
+FOREIGN KEY (grade_id) REFERENCES grades(grade_id);
+
+ALTER TABLE grades_assignments
+ADD CONSTRAINT FK_assignments_grades_assignments
+FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
 
 ALTER TABLE students
 ADD CONSTRAINT FK_students_classes
