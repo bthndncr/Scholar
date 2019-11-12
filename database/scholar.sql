@@ -36,8 +36,8 @@ CREATE TABLE students (
     student_id serial NOT NULL,
     first_name varchar NOT NULL,
     last_name varchar NOT NULL,
-    phone_number varchar(10) NOT NULL,
-    email varchar NOT NULL,
+    gender varchar NOT NULL,
+    birthday date,
     class_id int NOT NULL,
     CONSTRAINT pk_student_student_id PRIMARY KEY (student_id)
 );
@@ -54,6 +54,7 @@ CREATE TABLE administrators (
 CREATE TABLE classes (
     class_id serial NOT NULL,
     class_code varchar NOT NULL,
+    grade_level int NOT NULL,
     room_code int NOT NULL,
     CONSTRAINT pk_class_class_id PRIMARY KEY (class_id)
 );
@@ -84,7 +85,6 @@ CREATE TABLE grades (
     grade_id serial NOT NULL,
     assignment_id int NOT NULL,
     student_id int NOT NULL,
-    points_possible int,
     points_earned decimal(5, 2),
     CONSTRAINT PK_grades_grade_id PRIMARY KEY (grade_id)
 );
@@ -95,7 +95,7 @@ CREATE TABLE assignments (
     points_possible int,
     date_assigned date,
     date_due date,
-    subject varchar,
+    class_id int NOT NULL,
     CONSTRAINT PK_assignments_assignment_id PRIMARY KEY (assignment_id)
 );
 
@@ -178,6 +178,10 @@ FOREIGN KEY (log_id) REFERENCES logs(log_id);
 ALTER TABLE grades
 ADD CONSTRAINT FK_grades_assignments
 FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
+
+ALTER TABLE assignments
+ADD CONSTRAINT FK_assignments_classes
+FOREIGN KEY (class_id) REFERENCES classes(class_id);
 
 
 -- for gradebook, the sql will be something like:
