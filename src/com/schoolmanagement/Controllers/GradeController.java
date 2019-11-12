@@ -11,23 +11,24 @@ import com.schoolmanagement.Models.GradeBook.JDBCGradeBookDao;
 
 
 @Controller
+@RequestMapping("dashboard")
 public class GradeController {
 	
 	@Autowired
 	JDBCGradeBookDao gradeDao;
 	
-	@RequestMapping(path="/dashboard/displayGrades", method=RequestMethod.GET)
+	@RequestMapping(path="/displayGrades", method=RequestMethod.GET)
 	public String showGradeInputPage() {
 		
 		return "displayGradesForm";
 	}
 	
-	@RequestMapping(path="/dashboard/displayGrades", method=RequestMethod.POST)
-	public String processGradeInputs(ModelMap modelHolder, @RequestParam String classCode) {
+	@RequestMapping(path="/displayGrades", method=RequestMethod.POST)
+	public String processGradeInputs(ModelMap modelHolder) {
 		
+		/// pull the assignments by classCode
 		
-		
-		return "redirect:/displayGradesForm";
+		return "redirect:/dashboard/displayGrades";
 	}
 	
 //	@RequestMapping(path="/gradeView", method=RequestMethod.GET)
