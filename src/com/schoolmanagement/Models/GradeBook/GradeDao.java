@@ -1,4 +1,4 @@
-package com.schoolmanagement.Models.Grades;
+package com.schoolmanagement.Models.GradeBook;
 
 import java.util.List;
 

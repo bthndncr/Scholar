@@ -21,9 +21,12 @@
 	  </div>
 	  
 	  <div class="form-group">
-	    <label for="role">Role</label>
-	    <input type="text" class="form-control"  placeholder="Role">
-	  </div>
+		<select id="role">
+			<option value="admin">Admin</option>
+			<option value="teacher">Teacher</option>
+			<option value="student">Student</option>
+		</select>
+	</div>
 	  
 	   <div class="form-group">
 	    <label for="Email1">Email address</label>

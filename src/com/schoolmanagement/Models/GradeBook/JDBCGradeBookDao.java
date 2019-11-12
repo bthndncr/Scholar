@@ -1,4 +1,4 @@
-package com.schoolmanagement.Models.Grades;
+package com.schoolmanagement.Models.GradeBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 import com.schoolmanagement.Models.Student;
 
 @Component
-public class JDBCGradeDao implements GradeDao {
+public class JDBCGradeBookDao implements GradeDao {
 	
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	public JDBCGradeDao(DataSource dataSource) {
+	public JDBCGradeBookDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
@@ -85,6 +85,36 @@ public class JDBCGradeDao implements GradeDao {
 		
 		return studentListForGrades;
 	}
+	
+	
+	public List<Assignment> getAssignmentsByClassId(int classId){
+		List<Assignment> allAssignments = new ArrayList<>();
+		
+		String sql = "select * from assignments "
+					+ "WHERE class_id in (select class_id from classes where class_code = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, classId );
+		while(results.next()) {
+			Assignment theAssignment = mapToRowAssignment(results);
+			allAssignments.add(theAssignment);
+		}
+		return allAssignments;
+	}
+	
+	private Assignment mapToRowAssignment(SqlRowSet results) {
+		Assignment theAssignment = new Assignment();
+		
+		theAssignment.setAssignmentId(results.getInt("assignment_id"));
+		theAssignment.setClassId(results.getInt("class_id"));
+		theAssignment.setPointsPossible(results.getInt("points_possible"));
+		theAssignment.setDateAssigned(results.getDate("date_assigned"));
+		theAssignment.setDueDate(results.getDate("date_due"));
+		theAssignment.setTitle(results.getString("title"));
+		
+		return theAssignment;
+		
+	}
+	
+	
 
 	private Grade mapRowToGrade(SqlRowSet results) {
 		Grade newGrade = new Grade();

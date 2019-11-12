@@ -46,7 +46,7 @@
 		<property name="username" value="theUser" />
 		<property name="password" value="thePassword" />
 	</bean>
-	
+
 	
     <!-- enable the configuration of transactional behavior based on annotations -->
     <!-- 
