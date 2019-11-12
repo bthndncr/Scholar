@@ -12,13 +12,12 @@ public class StudentController {
 	
 	@RequestMapping(path="/search", method=RequestMethod.GET)
 	public String displayStudentSearch() {
-		
 		return "studentSearch";
 	}
 	
 	@RequestMapping(path="/search", method=RequestMethod.POST)
 	public String processStudentSearch() {
-		
+		// search students
 		
 		return "redirect:/dashboard/search";
 	}

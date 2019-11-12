@@ -31,21 +31,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   	<form action="#" method="#" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Quick Search" aria-label="Search">
+      <input class="form-control mr-sm-2" type="search" placeholder="Quick Student Search" aria-label="Search">
       <button class="btn btn-sm btn-outline-success my-2 " type="submit">Search</button>
     </form>
     
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Attendance</a>
-      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Students
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="dashboard/search">Advance Search</a>
-          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -54,8 +51,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">My Account</a>
-          <a class="dropdown-item" href="#">Performance Management</a>
-          <a class="dropdown-item" href="#">Alerts</a>
         </div>
       </li>
       <li class="nav-item">
@@ -66,33 +61,14 @@
           Grade Book
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Curriculum</a>
-          
           <c:url var="grades" value="dashboard/displayGrades" />
           <a class="dropdown-item" href="${grades}">Grades</a>
-          <a class="dropdown-item" href="#">Reports</a>
+          <a class="dropdown-item" href="#" >Assignments</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Discipline</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Log Book
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Log Book</a>
-          <a class="dropdown-item" href="#">Reports</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          eForms
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Create a request</a>
-        </div>
-      </li> 
+      
+      
+     
     </ul>
     <!-- Username goes here!! -->
     <button class="btn btn-sm btn-outline-danger" type="submit">Sign Out</button>

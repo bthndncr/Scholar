@@ -1,12 +1,14 @@
 package com.schoolmanagement.Models;
 
+import java.util.Date;
+
 public class Student {
 	
 	private int studentId;
 	private String firstName;
 	private String lastName;
-	private double phoneNumber;
-	private String email;
+	private String gender;
+	private Date birthdate;
 	private int classId;
 	
 	
@@ -28,17 +30,18 @@ public class Student {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public double getPhoneNumber() {
-		return phoneNumber;
+	
+	public String getGender() {
+		return gender;
 	}
-	public void setPhoneNumber(double phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-	public String getEmail() {
-		return email;
+	public Date getBirthdate() {
+		return birthdate;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 	public int getClassId() {
 		return classId;
