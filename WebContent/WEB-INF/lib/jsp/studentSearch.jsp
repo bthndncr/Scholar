@@ -12,16 +12,20 @@
   
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	
-		<form action="search" method="POST">
-		
-		  <select name= "grade">
-		    <option>Grade</option>
-		    <option value="6">6</option>
-		    <option value="7">7</option>
-		  </select>
-		
-		
-		  <select class="ml-2" name= "code">
+		<form action="searchInput" method="GET">
+
+			<select name="grade">
+				<option>Grade</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+			</select>
+			
+		<select class="ml-2" name= "code">
 		    <option>Section</option>
 		    <option value="A">A</option>
 		    <option value="B">B</option>
@@ -34,7 +38,11 @@
   </div>
 </nav>
 
+<c:forEach items="${students}" var="student" >
+<h2>${student.firstName } ${student.lastName}</h2> 
 
+
+</c:forEach>
 
 
 

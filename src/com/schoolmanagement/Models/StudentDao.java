@@ -6,7 +6,7 @@ public interface StudentDao {
 
 	List<Student> getAllStudents();
 	
-	List<Student> getStudentByClassCodeAndClassGrade(int classCode, String classGrade);
+	List<Student> getStudentByClassCodeAndClassGrade(String classCode, int classGrade);
 	
 	Student getStudentbyName();
 	
