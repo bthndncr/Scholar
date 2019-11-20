@@ -6,14 +6,6 @@ DROP TABLE IF EXISTS announcements   cascade;
 DROP TABLE IF EXISTS detentions      cascade;
 DROP TABLE IF EXISTS grade_levels    cascade;
 DROP TABLE IF EXISTS classes         cascade;
-DROP TABLE IF EXISTS teacher         cascade;
-DROP TABLE IF EXISTS student         cascade;
-DROP TABLE IF EXISTS admin           cascade;
-DROP TABLE IF EXISTS room            cascade;
-DROP TABLE IF EXISTS announcement    cascade;
-DROP TABLE IF EXISTS detention       cascade;
-DROP TABLE IF EXISTS grade_level     cascade;
-DROP TABLE IF EXISTS class           cascade;
 DROP TABLE IF EXISTS teachers_classes cascade;
 DROP TABLE IF EXISTS grades          cascade;
 DROP TABLE IF EXISTS assignments     cascade;
@@ -21,6 +13,8 @@ DROP TABLE IF EXISTS grades_assignments cascade;
 DROP TABLE IF EXISTS logs            cascade;
 DROP TABLE IF EXISTS disciplines     cascade;
 DROP TABLE IF EXISTS teachers_logs   cascade;
+DROP TABLE IF EXISTS registrations    cascade;
+DROP TABLE IF EXISTS roles            cascade;
 
 CREATE TABLE teachers (
     teacher_id serial NOT NULL,
@@ -125,6 +119,24 @@ CREATE TABLE teachers_logs (
     log_id int NOT NULL,
     CONSTRAINT PK_teachers_teacher_id_logs_log_id PRIMARY KEY (teacher_id, log_id)
 );
+
+CREATE TABLE registrations (
+    username varchar NOT NULL,
+    password varchar NOT NULL,
+    salt varchar NOT NULL,
+    role_id int NOT NULL,
+    CONSTRAINT PK_registrations_username PRIMARY KEY (username)
+);
+
+CREATE TABLE roles (
+    role_id serial NOT NULL,
+    role_title varchar NOT NULL,
+    CONSTRAINT PK_roles_role_id PRIMARY KEY (role_id)
+);
+
+ALTER TABLE registrations
+ADD CONSTRAINT FK_roles_registrations
+FOREIGN KEY (role_id) REFERENCES roles(role_id);
 
 ALTER TABLE grades_assignments
 ADD CONSTRAINT FK_grades_grades_assignments
