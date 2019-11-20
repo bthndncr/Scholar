@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
-<hr />
+	
+	<hr />
         
         <footer class="footer mt-auto py-3">
   			<div class="container">

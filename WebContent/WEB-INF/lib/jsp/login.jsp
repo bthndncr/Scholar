@@ -18,24 +18,17 @@
 	
 	<div class="form-group">
 		<select id="role">
-			<option value="admin">Admin</option>
 			<option value="teacher">Teacher</option>
 			<option value="student">Student</option>
 		</select>
 	</div>
 	
 	
-	  <label for="inputEmail" class="sr-only">Email address</label>
-	  <input type="email" id="inputEmail" class="form-control mb-1" placeholder="Email address" required autofocus>
+	  <input type="email" name="username" class="form-control mb-1" placeholder="Username" required autofocus>
 	  
-	  <label for="inputPassword" class="sr-only">Password</label>
-	  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-	  <div class="checkbox mb-3">
-    	<label>
-      	<input type="checkbox" value="remember-me"> Remember me
-    	</label>
-  	  </div>
-  	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	  <input type="password" name="password" class="form-control" placeholder="Password" required>
+	  
+  	<button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
 	  
 	</form>
 

@@ -20,8 +20,6 @@ CREATE TABLE teachers (
     teacher_id serial NOT NULL,
     first_name varchar NOT NULL,
     last_name varchar NOT NULL,
-    phone_number varchar(10) NOT NULL,
-    email varchar NOT NULL,
     class_id int NOT NULL,
     CONSTRAINT pk_teacher_teacher_id PRIMARY KEY (teacher_id)
 );
@@ -30,8 +28,8 @@ CREATE TABLE students (
     student_id serial NOT NULL,
     first_name varchar NOT NULL,
     last_name varchar NOT NULL,
-    phone_number varchar(10) NOT NULL,
-    email varchar NOT NULL,
+    gender varchar NOT NULL,
+    birthday date,
     class_id int NOT NULL,
     CONSTRAINT pk_student_student_id PRIMARY KEY (student_id)
 );
@@ -48,15 +46,11 @@ CREATE TABLE administrators (
 CREATE TABLE classes (
     class_id serial NOT NULL,
     class_code varchar NOT NULL,
+    grade_level int NOT NULL,
     room_code int NOT NULL,
     CONSTRAINT pk_class_class_id PRIMARY KEY (class_id)
 );
 
-CREATE TABLE rooms (
-    room_code serial NOT NULL,
-    class_id int NOT NULL,
-    CONSTRAINT pk_room_room_code PRIMARY KEY (room_code)
-);
 
 CREATE TABLE announcements (
     announcement_id serial NOT NULL,
@@ -174,10 +168,6 @@ ALTER TABLE teachers_classes
 ADD CONSTRAINT FK_classes_teachers_classes
 FOREIGN KEY (class_id) REFERENCES classes(class_id);
 
-ALTER TABLE classes
-ADD CONSTRAINT FK_classes_rooms
-FOREIGN KEY (room_code) REFERENCES rooms(room_code);
-
 ALTER TABLE teachers_logs
 ADD CONSTRAINT FK_teachers_teachers_logs
 FOREIGN KEY (teacher_id) REFERENCES teachers(teacher_id);
@@ -192,10 +182,4 @@ FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
 
 ALTER TABLE assignments
 ADD CONSTRAINT FK_assignments_classes
-FOREIGN KEY (class_id) REFERENCES classes(class_id);
 
-
--- for gradebook, the sql will be something like:
--- SELECT * from gradebook where assignment_id=10 group by letter_grade order by letter_grade desc;
--- when viewing grades on an assignment, we want it to return a list of students and the grade they
--- received on the selected assignment.
