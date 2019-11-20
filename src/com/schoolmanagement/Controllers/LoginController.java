@@ -25,9 +25,9 @@ public class LoginController {
 	
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
-	public String processLogin(@RequestParam String username, @RequestParam String password, RedirectAttributes flash) {
+	public String processLogin(@RequestParam String username, @RequestParam String password, @RequestParam String role, RedirectAttributes flash) {
 		
-		if(auth.signIn(username, password)) {
+		if(auth.signIn(username, password, role)) {
 			return "redirect:/dashboard";	
 		} else {
 			flash.addAttribute("message", "Login Invalid");

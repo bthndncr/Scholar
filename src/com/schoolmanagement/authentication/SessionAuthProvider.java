@@ -35,8 +35,8 @@ public class SessionAuthProvider implements AuthProvider {
     }
 
     @Override
-    public boolean signIn(String username, String password) {
-        User authenticatedUser = dao.getValidUserWithPassword(username, password);
+    public boolean signIn(String username, String password, String role) {
+        User authenticatedUser = dao.getValidUserWithPassword(username, password, role);
         if (authenticatedUser != null) {
             session.setAttribute(USER_KEY, authenticatedUser);
             return true;

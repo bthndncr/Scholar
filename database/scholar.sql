@@ -115,22 +115,14 @@ CREATE TABLE teachers_logs (
 );
 
 CREATE TABLE registrations (
+    id serial NOT NULL,
     username varchar NOT NULL,
     password varchar NOT NULL,
     salt varchar NOT NULL,
-    role_id int NOT NULL,
-    CONSTRAINT PK_registrations_username PRIMARY KEY (username)
-);
-
-CREATE TABLE roles (
-    role_id serial NOT NULL,
     role_title varchar NOT NULL,
-    CONSTRAINT PK_roles_role_id PRIMARY KEY (role_id)
+    CONSTRAINT PK_registrations_id PRIMARY KEY (id)
 );
 
-ALTER TABLE registrations
-ADD CONSTRAINT FK_roles_registrations
-FOREIGN KEY (role_id) REFERENCES roles(role_id);
 
 ALTER TABLE grades_assignments
 ADD CONSTRAINT FK_grades_grades_assignments

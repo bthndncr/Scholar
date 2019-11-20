@@ -46,6 +46,7 @@
           <a class="dropdown-item" href="search">Advance Search</a>
         </div>
       </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Staff
@@ -57,6 +58,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Schedule</a>
       </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Grade Book
@@ -71,13 +73,16 @@
     </ul>
     
     <c:if test="${not empty appCurrentUser}">
-       <li><a href="dashboard"><c:out value="${appCurrentUser.username}" /></a></li>
+    <ul class="navbar-nav">
+       <li class="nav-item"><a class="nav-link" href="dashboard">${appCurrentUser.username}</a></li>
+       
         <c:url var="logoffUrl" value="/logoff"/>
         <li>
-            <form action="${logoffUrl}" method="POST" class="navbar-form">
+            <form action="${logoffUrl}" method="POST" class="mt-1">
                 <button type="submit" class="btn btn-sm btn-outline-danger">Sign Out</button>
             </form>
-        </li>
+         </li>
+        </ul>
      </c:if>
 
   </div>

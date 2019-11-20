@@ -17,14 +17,14 @@
 	<form action="${formAction}" method="POST">
 	
 	<div class="form-group">
-		<select id="role">
+		<select name="role" id="role">
 			<option value="teacher">Teacher</option>
 			<option value="student">Student</option>
 		</select>
 	</div>
 	
 	
-	  <input type="email" name="username" class="form-control mb-1" placeholder="Username" required autofocus>
+	  <input type="text" name="username" class="form-control mb-1" placeholder="Username" required autofocus>
 	  
 	  <input type="password" name="password" class="form-control" placeholder="Password" required>
 	  

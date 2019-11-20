@@ -8,7 +8,7 @@ public interface AuthProvider {
 	
 	User getCurrentUser();
 	
-	boolean signIn(String username, String password);
+	boolean signIn(String username, String password, String role);
 	
 	void logOff();
 	
