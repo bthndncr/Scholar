@@ -53,14 +53,36 @@ public class JDBCGradeBookDao implements GradeDao {
 	@Override
 	public List<Grade> getGradesByAssignmentId(int assignmentId) {
 		List<Grade> gradesByAssignment = new ArrayList<Grade>();
-		String sqlGetGradesByAssignment = "SELECT * FROM grade "
-										+ "WHERE assignment_id = ? ;";
+		String sqlGetGradesByAssignment = "SELECT  students.first_name, students.last_name, assignments.title, grades.points_earned FROM grades " + 
+				"JOIN students " + 
+				"ON students.student_id = grades.student_id " + 
+				"Join assignments " + 
+				"on assignments.assignment_id = grades.assignment_id " + 
+				"WHERE grades.student_id in (SELECT student_id from students where class_id = (SELECT class_id from classes where grade_level = ? and class_code = ? ));";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetGradesByAssignment, assignmentId);
 		while (results.next()) {
 			Grade newGrade = mapRowToGrade(results);
 			gradesByAssignment.add(newGrade);
 		}
 		return gradesByAssignment;
+	}
+	
+	@Override
+	public List<Grade> getGradesForAClass(int grade, String code, String sort) {
+		List<Grade> classGrades = new ArrayList<Grade>();
+		String sqlGetGradesByAssignment = "SELECT students.first_name as first_name, students.last_name as last_name, assignments.title as title, grades.points_earned as points_earned FROM grades " + 
+				"JOIN students " + 
+				"ON students.student_id = grades.student_id " + 
+				"Join assignments " + 
+				"on assignments.assignment_id = grades.assignment_id " + 
+				"WHERE grades.student_id in (SELECT student_id from students where class_id = (SELECT class_id from classes where grade_level = ? and class_code = ? ))"
+				+ "	ORDER BY " + sort + " desc";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetGradesByAssignment, grade, code );
+		while (results.next()) {
+			Grade newGrade = mapRowToGrade(results);
+			classGrades.add(newGrade);
+		}
+		return classGrades;
 	}
 
 	@Override
@@ -114,14 +136,13 @@ public class JDBCGradeBookDao implements GradeDao {
 		
 	}
 	
-	
-
 	private Grade mapRowToGrade(SqlRowSet results) {
 		Grade newGrade = new Grade();
-		newGrade.setAssignmentId(results.getInt("assignment_id"));
-		newGrade.setPointsAllowed(results.getInt("points_allowed"));
-		newGrade.setPointsPossible(results.getInt("points_possible"));
-		newGrade.setStudentId(results.getInt("student_id"));
+		newGrade.setFirstName(results.getString("first_name"));
+		newGrade.setLastName(results.getString("last_name"));
+		newGrade.setAssignmentTitle(results.getString("title"));
+		newGrade.setPointsEarned(results.getDouble("points_earned"));
+		
 		return newGrade;
 	}
 	

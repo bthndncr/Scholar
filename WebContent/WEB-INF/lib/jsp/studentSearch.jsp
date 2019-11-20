@@ -38,12 +38,28 @@
   </div>
 </nav>
 
+<table class="table">
+	<thead class="thead-light">
+	    <tr>
+	      <th scope="col">First</th>
+	      <th scope="col">Last</th>
+	      <th scope="col">Gender</th>
+	      <th scope="col">Birthday</th>
+	    </tr>
+	  </thead>
 <c:forEach items="${students}" var="student" >
-<h2>${student.firstName } ${student.lastName}</h2> 
-
-
+	
+	  <tbody>
+	    <tr>
+	      <td>${student.firstName}</td>
+	      <td>${student.lastName}</td>
+	      <td>${student.gender}</td>
+	      <td>${student.birthdate}</td>
+	    </tr>
+	
 </c:forEach>
-
+   
+</table>
 
 
 

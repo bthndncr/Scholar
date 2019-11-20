@@ -30,6 +30,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
   	<form action="#" method="#" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Quick Student Search" aria-label="Search">
       <button class="btn btn-sm btn-outline-success my-2 " type="submit">Search</button>
@@ -42,7 +43,7 @@
           Students
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="dashboard/search">Advance Search</a>
+          <a class="dropdown-item" href="search">Advance Search</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -61,18 +62,33 @@
           Grade Book
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <c:url var="grades" value="dashboard/displayGrades" />
-          <a class="dropdown-item" href="${grades}">Grades</a>
+          <c:url var="gradePage" value="displayGrades" />
+          <a class="dropdown-item" href="${gradePage}">Grades</a>
           <a class="dropdown-item" href="#" >Assignments</a>
         </div>
       </li>
       
-      
-     
     </ul>
-    <!-- Username goes here!! -->
-    <button class="btn btn-sm btn-outline-danger" type="submit">Sign Out</button>
+    
+    <c:if test="${not empty appCurrentUser}">
+       <li><a href="dashboard"><c:out value="${appCurrentUser.username}" /></a></li>
+        <c:url var="logoffUrl" value="/logoff"/>
+        <li>
+            <form action="${logoffUrl}" method="POST" class="navbar-form">
+                <button type="submit" class="btn btn-sm btn-outline-danger">Sign Out</button>
+            </form>
+        </li>
+     </c:if>
+
   </div>
 </nav>
+
+<!-- Login error message -->
+<%-- <div class="container body-content">
+    <c:if test="${not empty message}">
+        <div class="message alert alert-danger" role="alert">
+            <c:out value="${message}"/>
+        </div>
+    </c:if> --%>
 
 

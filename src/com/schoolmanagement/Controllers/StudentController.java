@@ -14,11 +14,10 @@ import com.schoolmanagement.Models.JDBCStudentDao;
 import com.schoolmanagement.Models.StudentDao;
 
 @Controller
-@RequestMapping("/dashboard")
 public class StudentController {
 	
 	@Autowired
-	JDBCStudentDao studentDao;
+	StudentDao studentDao;
 
 	
 	@RequestMapping(path="/search", method=RequestMethod.GET)
