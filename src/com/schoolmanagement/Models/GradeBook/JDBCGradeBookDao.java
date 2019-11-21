@@ -109,18 +109,19 @@ public class JDBCGradeBookDao implements GradeDao {
 	}
 	
 	
-	public List<Assignment> getAssignmentsByClassId(int classId){
+	public List<Assignment> getAssignmentsByClassId(int classCode){
 		List<Assignment> allAssignments = new ArrayList<>();
 		
 		String sql = "select * from assignments "
 					+ "WHERE class_id in (select class_id from classes where class_code = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, classId );
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, classCode );
 		while(results.next()) {
 			Assignment theAssignment = mapToRowAssignment(results);
 			allAssignments.add(theAssignment);
 		}
 		return allAssignments;
 	}
+	
 	
 	private Assignment mapToRowAssignment(SqlRowSet results) {
 		Assignment theAssignment = new Assignment();

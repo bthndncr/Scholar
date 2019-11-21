@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.schoolmanagement.Models.GradeBook.AssignmentDao;
 import com.schoolmanagement.Models.GradeBook.GradeDao;
-import com.schoolmanagement.Models.GradeBook.JDBCGradeBookDao;
 
 
 @Controller
@@ -18,6 +18,9 @@ public class GradeController {
 	
 	@Autowired
 	GradeDao gradeDao;
+	
+	@Autowired
+	AssignmentDao assignmentDao;
 	
 	@RequestMapping(path="/displayGrades", method=RequestMethod.GET)
 	public String showGradeInputPage() {
@@ -28,13 +31,30 @@ public class GradeController {
 	@RequestMapping(path="/displayGrades", method=RequestMethod.POST)
 	public String processGradeInputs(@RequestParam int grade, @RequestParam String code, @RequestParam String sort, HttpSession session) {
 		
-		/// pull the assignments by classCode
 		
 		session.setAttribute("grades", gradeDao.getGradesForAClass(grade, code, sort));
 		session.setAttribute("classGrade", grade);
 		session.setAttribute("classCode", code);
 		
 		return "redirect:/displayGrades";
+	}
+	
+	
+	@RequestMapping(path="/inputGrades", method=RequestMethod.GET)
+	public String displayInputGradesForm(ModelMap map) {
+		map.addAttribute("classes", assignmentDao.getAllClasses());
+		
+		return "displayInputGradesForm";
+	}
+	
+	
+	@RequestMapping(path="/inputGrades", method=RequestMethod.POST)
+	public String processSelectingClass(HttpSession session, @RequestParam int classId) {
+		
+		session.setAttribute("assignments", assignmentDao.getAssignmentsByClassId(classId));
+		
+		return "redirect:/inputGrades";
+		
 	}
 	
 

@@ -66,7 +66,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <c:url var="gradePage" value="displayGrades" />
           <a class="dropdown-item" href="${gradePage}">Grades</a>
+          <c:url var="inputGrades" value="inputGrades" />
+          <a class="dropdown-item" href="${inputGrades}" >Update Grades</a>
           <a class="dropdown-item" href="#" >Assignments</a>
+          
         </div>
       </li>
       
