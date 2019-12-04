@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.schoolmanagement.Models.StudentDao;
 import com.schoolmanagement.Models.GradeBook.AssignmentDao;
 import com.schoolmanagement.Models.GradeBook.GradeDao;
 
@@ -21,6 +22,9 @@ public class GradeController {
 	
 	@Autowired
 	AssignmentDao assignmentDao;
+	
+	@Autowired
+	StudentDao studentDao;
 	
 	@RequestMapping(path="/displayGrades", method=RequestMethod.GET)
 	public String showGradeInputPage() {
@@ -43,15 +47,17 @@ public class GradeController {
 	@RequestMapping(path="/inputGrades", method=RequestMethod.GET)
 	public String displayInputGradesForm(ModelMap map) {
 		map.addAttribute("classes", assignmentDao.getAllClasses());
+
 		
 		return "displayInputGradesForm";
 	}
 	
 	
 	@RequestMapping(path="/inputGrades", method=RequestMethod.POST)
-	public String processSelectingClass(HttpSession session, @RequestParam int classId) {
+	public String processSelectingClass(HttpSession session, ModelMap map, @RequestParam int classId) {
 		
 		session.setAttribute("assignments", assignmentDao.getAssignmentsByClassId(classId));
+		map.addAttribute("students", studentDao.getStudentsByClassId(classId));
 		
 		return "redirect:/inputGrades";
 	}

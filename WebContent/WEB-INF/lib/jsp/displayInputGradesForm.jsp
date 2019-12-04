@@ -4,14 +4,21 @@
 
 <script type="text/javascript">
 	
-	const h3 = document.querySelector("h3");
-	const form = document.querySelector("edit");
-	h3.addEventListener("click", (e) => {
-		e.preventDefault();
-		form.classList.remove("d-none");
-	})
+	function toggleForm(){
+		
+		/* const allButtons = document.querySelectorAll(".shit"); */
+		const form = document.getElementById("edit");
+/* 		allButtons.forEach((button) => {
+				e.preventDefault(); */
+				form.classList.remove("d-none"); 
+
+	/* 	}); */
+
+		
+	}
 	
 </script>
+
 
 
 
@@ -39,15 +46,38 @@
   </div>
 </nav>
 		
-			<c:forEach items="${assignments}" var="assignment">
-				<h3>${assignment.title }</h3>	
-			</c:forEach>
+			<div class="container">
+				<div class="row">
+					<div class="col-6">
+						<c:forEach items="${assignments}" var="assignment">
+							<button class="shit d-block mb-1" onclick="toggleForm()">${assignment.title }</button>	
+						</c:forEach>
+					</div>
+					<div class="col-6">
+						<form class="d-none" id="edit">
+							<input type="text" placeholder="firstName"></input>
+							<input type="text" placeholder="lastName"></input>
+							<input type="number" min=0 max=100 placeholder="point posibble"></input>
+							<label>Point Possible</label>
+							<input type="number" placeholder="${assignment.pointsEarned }"></input>
+							<c:forEach items="${students}" var="student">
+							${student.firstName} ${student.lastName }
+							</c:forEach>
 			
-			<form class="d-none" id="edit">
-				<p>Hello I am there</p>
 			
-			</form>
 			
+			
+						</form>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+
+
+
+
 
 
 

@@ -65,6 +65,22 @@ public class JDBCStudentDao implements StudentDao {
 		
 		return theStudent;
 	}
+
+	@Override
+	public List<Student> getStudentsByClassId(int classId) {
+		List<Student> allStudents = new ArrayList<>();
+		
+		String sql = "select * from students where class_id = ?;";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, classId);
+		
+		while(results.next()) {
+			Student theStudent = mapToRowStudents(results);
+			allStudents.add(theStudent);
+		}
+		
+		return allStudents;
+	}
 	
 	
 	
