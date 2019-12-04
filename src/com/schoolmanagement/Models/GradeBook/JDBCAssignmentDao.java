@@ -44,6 +44,14 @@ public class JDBCAssignmentDao implements AssignmentDao {
 		return listOfClasses;
 	}
 	
+	public void saveAssignments(Assignment theAssignment) {
+		String sql = "insert into assigments(title, points_possible, date_assigned, date_due, class_id) values(?, ?, ?, ?, ? )";
+		jdbcTemplate.update(sql, theAssignment.getTitle(), theAssignment.getPointsPossible(), theAssignment.getDateAssigned(), theAssignment.getDueDate(), theAssignment.getClassId());
+		
+	}
+	
+	
+	
 	private Assignment mapToRowAssignment(SqlRowSet results) {
 		Assignment theAssignment = new Assignment();
 		theAssignment.setAssignmentId(results.getInt("assignment_id"));

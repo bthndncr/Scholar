@@ -54,8 +54,15 @@ public class GradeController {
 		session.setAttribute("assignments", assignmentDao.getAssignmentsByClassId(classId));
 		
 		return "redirect:/inputGrades";
-		
+	}
+
+	@RequestMapping(path="/assignmentsomething", method=RequestMethod.GET)
+	public String displayNewAssignmentForm(ModelMap map) {
+		map.addAttribute("classes", assignmentDao.getAllClasses());
+		return "displayAssignmentForm";
 	}
 	
+	//@RequestMapping(path="/assignmentsomething", method=RequestMethod.POST)
+	//public String processAssignmentCreation(ModelAttribute("Assignment") Assignment assigment,)
 
 }
